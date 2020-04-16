@@ -2189,9 +2189,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -45315,13 +45312,7 @@ var render = function() {
           ])
         ])
       ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticStyle: { height: "1000px", background: "#ccc" } }, [
-      _vm._v(
-        "\n         hello\n         " + _vm._s(_vm.scrollPosition) + "\n     "
-      )
-    ])
+    )
   ])
 }
 var staticRenderFns = [

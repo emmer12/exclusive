@@ -34,10 +34,7 @@
         </div>
         </div>
          </div>
-         <div style="height:1000px; background:#ccc ">
-             hello
-             {{scrollPosition}}
-         </div>
+       
 
     </div> 
 
