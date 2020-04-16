@@ -2189,15 +2189,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      scrollPosition: null
+      scrollPosition: null,
+      sidebar: false
     };
   },
   methods: {
     handleScroll: function handleScroll(e) {
       this.scrollPosition = window.scrollY;
+    },
+    openSidebar: function openSidebar() {
+      this.sidebar = !this.sidebar;
     }
   },
   created: function created() {
@@ -6792,7 +6816,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".top-nav[data-v-ee674dd4] {\n  display: grid;\n  grid-template-columns: repeat(2, 3fr);\n  background: #222;\n  height: 30px;\n}\n.top-nav ul li[data-v-ee674dd4] {\n  list-style: none;\n  display: inline-block;\n  line-height: 30px;\n}\n.top-nav ul li a[data-v-ee674dd4] {\n  color: rgba(224, 224, 224, 0.7);\n  padding: 0px 10px;\n}\n.top-nav div[data-v-ee674dd4]:nth-child(2) {\n  text-align: right;\n  margin-right: 20px;\n}\n.bottom-nav-con[data-v-ee674dd4] {\n  box-shadow: 1px 2px 3px #9cabc3;\n  transition: 0.3s ease;\n}\n.bottom-nav-con.added[data-v-ee674dd4] {\n  position: fixed;\n  top: 0px;\n  z-index: 9;\n  left: 0px;\n  width: 100%;\n  -webkit-animation: fadeInDown 0.3s;\n          animation: fadeInDown 0.3s;\n  background: rgba(254, 254, 254, 0.7);\n}\n.bottom-nav[data-v-ee674dd4] {\n  display: grid;\n  grid-template-columns: 30% 70%;\n  height: 70px;\n}\n.bottom-nav ul li[data-v-ee674dd4] {\n  display: inline-block;\n  list-style: none;\n  line-height: 70px;\n}\n.bottom-nav ul li a[data-v-ee674dd4] {\n  position: relative;\n  color: #888;\n  font-weight: 700;\n  text-transform: uppercase;\n  padding: 10px 12px;\n}\n.bottom-nav ul li a[data-v-ee674dd4]:hover {\n  text-decoration: none;\n  color: #102066;\n}\n.bottom-nav ul li a[data-v-ee674dd4]::after {\n  content: \"\";\n  transition: 0.3s ease;\n  position: absolute;\n  height: 4px;\n  width: 0px;\n  background: #91959b;\n  bottom: 0px;\n  text-align: center;\n  left: 16px;\n}\n.bottom-nav ul li a[data-v-ee674dd4]:hover:after {\n  box-shadow: 8px 0px #938cd4, 39px 0px #102066;\n  width: 6px;\n}\n.bottom-nav div[data-v-ee674dd4]:nth-child(1) {\n  line-height: 70px;\n}\n@media (min-width: 320px) and (max-width: 640px) {\n.bottom-nav div[data-v-ee674dd4]:nth-child(2) {\n    display: none;\n}\n.top-nav[data-v-ee674dd4] {\n    display: none;\n}\n}", ""]);
+exports.push([module.i, ".spacer[data-v-ee674dd4] {\n  height: 1000px;\n  background: #ccc;\n}\n.top-nav[data-v-ee674dd4] {\n  display: grid;\n  grid-template-columns: repeat(2, 3fr);\n  background: #222;\n  height: 30px;\n}\n.top-nav ul li[data-v-ee674dd4] {\n  list-style: none;\n  display: inline-block;\n  line-height: 30px;\n}\n.top-nav ul li a[data-v-ee674dd4] {\n  color: rgba(224, 224, 224, 0.7);\n  padding: 0px 10px;\n}\n.top-nav div[data-v-ee674dd4]:nth-child(2) {\n  text-align: right;\n  margin-right: 20px;\n}\n.bottom-nav-con[data-v-ee674dd4] {\n  box-shadow: 1px 2px 3px #9cabc3;\n  transition: 0.3s ease;\n}\n.bottom-nav-con.added[data-v-ee674dd4] {\n  position: fixed;\n  top: 0px;\n  z-index: 9;\n  left: 0px;\n  width: 100%;\n  -webkit-animation: fadeInDown 0.3s;\n          animation: fadeInDown 0.3s;\n  background: rgba(254, 254, 254, 0.7);\n}\n.bottom-nav[data-v-ee674dd4] {\n  display: grid;\n  grid-template-columns: 30% 70%;\n  height: 70px;\n}\n.bottom-nav ul li[data-v-ee674dd4] {\n  display: inline-block;\n  list-style: none;\n  line-height: 70px;\n}\n.bottom-nav ul li a[data-v-ee674dd4] {\n  position: relative;\n  color: #888;\n  font-weight: 700;\n  text-transform: uppercase;\n  padding: 10px 12px;\n}\n.bottom-nav ul li a[data-v-ee674dd4]:hover {\n  text-decoration: none;\n  color: #102066;\n}\n.bottom-nav ul li a[data-v-ee674dd4]::after {\n  content: \"\";\n  transition: 0.3s ease;\n  position: absolute;\n  height: 4px;\n  width: 0px;\n  background: #91959b;\n  bottom: 0px;\n  text-align: center;\n  left: 16px;\n}\n.bottom-nav ul li a[data-v-ee674dd4]:hover:after {\n  box-shadow: 8px 0px #938cd4, 39px 0px #102066;\n  width: 6px;\n}\n.bottom-nav div[data-v-ee674dd4]:nth-child(1) {\n  line-height: 70px;\n}\n.sidebar[data-v-ee674dd4] {\n  position: fixed;\n  left: 0px;\n  top: 70px;\n  background: black;\n  width: 0vw;\n  overflow: hidden;\n  transition: 0.3s ease-in-out;\n  height: 100%;\n  height: 100%;\n}\n.sidebar.added[data-v-ee674dd4] {\n  width: 80vw;\n}\n.bar[data-v-ee674dd4] {\n  position: absolute;\n  right: 20px;\n  top: 21px;\n  display: none;\n}\n.bar.added span[data-v-ee674dd4]:nth-child(1) {\n  width: 30px;\n  transform: rotate(140deg) translateX(7px);\n  top: 4px;\n}\n.bar.added span[data-v-ee674dd4]:nth-child(2) {\n  transform: rotate(45deg) translateY(-5px);\n}\n.bar span[data-v-ee674dd4] {\n  height: 8px;\n  width: 30px;\n  background: #3d3df6;\n  display: block;\n  margin-top: 4px;\n  border-radius: 10px;\n  transition: 0.25s ease;\n}\n.bar span[data-v-ee674dd4]:nth-child(1) {\n  width: 20px;\n  position: relative;\n  right: -10px;\n  transition: 0.5s ease;\n}\n@media (min-width: 320px) and (max-width: 640px) {\n.bottom-nav div[data-v-ee674dd4]:nth-child(2) {\n    display: none;\n}\n.top-nav[data-v-ee674dd4] {\n    display: none;\n}\n.bar[data-v-ee674dd4] {\n    display: block;\n}\n}", ""]);
 
 // exports
 
@@ -45309,10 +45333,68 @@ var render = function() {
                 )
               ])
             ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "bar wow fadeInRight",
+              class: { added: _vm.sidebar },
+              on: { click: _vm.openSidebar }
+            },
+            [_c("span"), _vm._v(" "), _c("span")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "sidebar", class: { added: _vm.sidebar } }, [
+            _c("div", { staticClass: "s-header" }, [_vm._v("Header")]),
+            _vm._v(" "),
+            _c("ul", [
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/service" } }, [
+                    _vm._v("Service")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/contact" } }, [
+                    _vm._v("Contact")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/about" } }, [
+                    _vm._v("About")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/blog" } }, [
+                    _vm._v("Blog")
+                  ])
+                ],
+                1
+              )
+            ])
           ])
         ])
       ]
-    )
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "spacer" })
   ])
 }
 var staticRenderFns = [

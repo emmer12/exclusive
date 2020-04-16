@@ -16,7 +16,7 @@
                 </ul>
             </div>                
         </div>
-         <div class="bottom-nav-con"  :class="{added:scrollPosition > 30}">
+        <div class="bottom-nav-con"  :class="{added:scrollPosition > 30}">
 
         <div class="container">
             <div class="bottom-nav ">
@@ -29,12 +29,32 @@
                     <li><router-link to="/contact">Contact</router-link></li>
                     <li><router-link to="/about">About</router-link></li>
                     <li><router-link to="/blog">Blog</router-link></li>
-                </ul>
+                </ul>                                                                                                                            
             </div>
-        </div>
-        </div>
+
+           
+        </div>                   
+         <div class="bar wow fadeInRight" :class="{added:sidebar}" @click="openSidebar">
+                <span></span>
+                <span></span>
          </div>
-       
+        <div class="sidebar" :class="{added:sidebar}">
+            <div  class="s-header">Header</div>
+             <ul>
+                <li><router-link to="/service">Service</router-link></li>
+                <li><router-link to="/contact">Contact</router-link></li>
+                <li><router-link to="/about">About</router-link></li>
+                <li><router-link to="/blog">Blog</router-link></li>
+            </ul>
+        </div>
+        </div>
+        
+        </div>
+         
+         
+         <div class="spacer">
+
+         </div>
 
     </div> 
 
@@ -45,13 +65,17 @@
 
        data(){ 
             return {
-                scrollPosition:null
+                scrollPosition:null,
+                sidebar:false
              } 
         },
         methods:{
             handleScroll:function(e){
                this.scrollPosition=window.scrollY
-            }
+            },
+            openSidebar:function () { 
+                this.sidebar=!this.sidebar
+             }
         },
         created:function(){
             window.addEventListener('scroll',this.handleScroll)
@@ -66,6 +90,10 @@
 </script>
 <style src="cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css"></style>
 <style lang="scss" scoped>
+     .spacer{
+         height: 1000px;
+         background: #ccc
+     } 
     .top-nav{
         display: grid;
         grid-template-columns: repeat(2,3fr);
@@ -148,6 +176,53 @@
     .bottom-nav div:nth-child(1){
         line-height: 70px;
     }
+    .sidebar{
+        position: fixed;
+        left: 0px;
+        top: 70px;
+        background: black;
+        width: 0vw;
+        overflow: hidden;
+        transition: 0.3s ease-in-out;
+        height: 100%;
+        height: 100%;
+        &.added{
+            width: 80vw
+        }
+    }
+    .bar{
+            position: absolute;
+            right: 20px;
+            top: 21px;
+            display: none;
+          &.added{
+             & span:nth-child(1){
+            width: 30px;
+            transform: rotate(140deg) translateX(7px);
+            top: 4px;
+           }
+            & span:nth-child(2){
+            transform: rotate(45deg) translateY(-5px);
+        }
+        }
+        & span{
+            height: 8px;
+            width: 30px;
+            background: #3d3df6;
+            display: block;
+            margin-top: 4px;
+            border-radius: 10px;
+            transition: 0.25s ease;
+
+        }
+
+        & span:nth-child(1){
+           width: 20px;
+            position: relative;
+            right: -10px;
+            transition: 0.5s ease;
+        }
+    }
 
     @media (min-width: 320px) and (max-width: 640px) {
           .bottom-nav div:nth-child(2){
@@ -156,6 +231,9 @@
           .top-nav{
                 display: none
          }  
+         .bar{
+             display:block;
+         }
     }
 
 
