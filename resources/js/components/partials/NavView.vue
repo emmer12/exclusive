@@ -28,7 +28,10 @@
                     <li><router-link to="/service">Service</router-link></li>
                     <li><router-link to="/contact">Contact</router-link></li>
                     <li><router-link to="/about">About</router-link></li>
+<<<<<<< HEAD
                     <li><router-link to="/gallery">Gallery</router-link></li>
+=======
+>>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
                     <li><router-link to="/blog">Blog</router-link></li>
                 </ul>                                                                                                                            
             </div>
@@ -40,15 +43,21 @@
                 <span></span>
          </div>
         <div class="sidebar" :class="{added:sidebar}">
+<<<<<<< HEAD
             <div  class="s-header">
 
             </div>
              <ul class="ul">
+=======
+            <div  class="s-header">Header</div>
+             <ul>
+>>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
                 <li><router-link to="/service">Service</router-link></li>
                 <li><router-link to="/contact">Contact</router-link></li>
                 <li><router-link to="/about">About</router-link></li>
                 <li><router-link to="/blog">Blog</router-link></li>
             </ul>
+<<<<<<< HEAD
             <div class="s-footer">
                 <ul>
                     <li><a href=""><i class="facebook icon"></i></a></li>
@@ -57,15 +66,23 @@
                     <li><a href=""><i class="instagram icon"></i></a></li>
                 </ul>
             </div>
+=======
+>>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
         </div>
         </div>
         
         </div>
          
          
+<<<<<<< HEAD
          <!-- <div class="spacer">
 
          </div> -->
+=======
+         <div class="spacer">
+
+         </div>
+>>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
 
     </div> 
 
@@ -92,12 +109,16 @@
             window.addEventListener('scroll',this.handleScroll)
         },
         destroyed:function(){
+<<<<<<< HEAD
             
         },
         watch:{
             $route(to,from){
                 this.sidebar=false
             }
+=======
+            window.adEventListener('scroll',this.handleScroll)
+>>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
         },
         mounted() {
 
@@ -105,6 +126,7 @@
     }
 </script>
 <style src="cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css"></style>
+<<<<<<< HEAD
 <style lang="scss">
   li{
           list-style: none;
@@ -131,6 +153,9 @@
 </style>
 <style lang="scss" scoped>
       
+=======
+<style lang="scss" scoped>
+>>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
      .spacer{
          height: 1000px;
          background: #ccc
@@ -158,8 +183,12 @@
 
     }
     .bottom-nav-con{
+<<<<<<< HEAD
         // box-shadow:1px 2px 3px #9cabc3; 
         box-shadow: 0px 0px 25px -10px;
+=======
+        box-shadow:1px 2px 3px #9cabc3; 
+>>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
         transition: 0.3s ease;
           &.added{
             position: fixed;
@@ -222,12 +251,17 @@
         position: fixed;
         left: 0px;
         top: 70px;
+<<<<<<< HEAD
         background: #1f2037;
+=======
+        background: black;
+>>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
         width: 0vw;
         overflow: hidden;
         transition: 0.3s ease-in-out;
         height: 100%;
         height: 100%;
+<<<<<<< HEAD
         & .ul{
             margin: 0px;
             padding: 0px;
@@ -281,6 +315,12 @@
         background-size: cover;
     }
   
+=======
+        &.added{
+            width: 80vw
+        }
+    }
+>>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
     .bar{
             position: absolute;
             right: 20px;
@@ -314,7 +354,10 @@
             transition: 0.5s ease;
         }
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
 
     @media (min-width: 320px) and (max-width: 640px) {
           .bottom-nav div:nth-child(2){
