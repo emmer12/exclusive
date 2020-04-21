@@ -16,13 +16,18 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-// Route::get('/category','API\CategoryController@index')->name('category.index');
 
+Route::post('/login','API\LoginController@login');
 
 
 Route::group(['middleware'=>'auth:api'], function () {
     // Admin dashboard
     Route::get('/dashboard','API\CategoryController@subCategory')->name('subcategory.index');
+    Route::post('/newpost','API\BlogController@newPost');
+    Route::get('/allpost','API\BlogController@allPost');
+    
+
+    Route::post('/logout','API\LoginController@logout');
 });
 
 

@@ -21,43 +21,48 @@
         <div class="container">
             <div class="bottom-nav ">
             <div>
-               <img src="/images/logo.png" width="70px" alt="Exclusive Logo">
+               <router-link to="/">
+                 <img src="/images/logo.png" width="70px" alt="Exclusive Logo">
+               </router-link>
             </div>
             <div>
                  <ul>
                     <li><router-link to="/service">Service</router-link></li>
                     <li><router-link to="/contact">Contact</router-link></li>
                     <li><router-link to="/about">About</router-link></li>
-<<<<<<< HEAD
                     <li><router-link to="/gallery">Gallery</router-link></li>
-=======
->>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
                     <li><router-link to="/blog">Blog</router-link></li>
+                    <li v-if="loggedIn" @click="dropmenuChange"><img  class="logged-avata" src="/images/user.png" width="50px" height="50px" alt="img"> <i class="angle down icon"></i></li>
                 </ul>                                                                                                                            
             </div>
 
            
         </div>                   
+
+         <div class="logged-avata-mobile" v-if="loggedIn" @click="dropmenuChange">
+             <img class="logged-avata" src="/images/user.png" width="50px" height="50px" alt="img">
+             <i class="angle down icon"></i>
+         </div>
+             <div class="dropdown" :class="{added:dropmenu}">
+                <ul>
+                    <li><router-link to="/dashboard"><i class="settings icon"></i> Dashboard</router-link></li>
+                    <li><router-link to="/logout"><i class="sign out alternate icon"></i> Logout</router-link></li>
+                </ul>
+              </div>
          <div class="bar wow fadeInRight" :class="{added:sidebar}" @click="openSidebar">
                 <span></span>
                 <span></span>
          </div>
         <div class="sidebar" :class="{added:sidebar}">
-<<<<<<< HEAD
             <div  class="s-header">
 
             </div>
              <ul class="ul">
-=======
-            <div  class="s-header">Header</div>
-             <ul>
->>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
                 <li><router-link to="/service">Service</router-link></li>
                 <li><router-link to="/contact">Contact</router-link></li>
                 <li><router-link to="/about">About</router-link></li>
                 <li><router-link to="/blog">Blog</router-link></li>
             </ul>
-<<<<<<< HEAD
             <div class="s-footer">
                 <ul>
                     <li><a href=""><i class="facebook icon"></i></a></li>
@@ -66,23 +71,15 @@
                     <li><a href=""><i class="instagram icon"></i></a></li>
                 </ul>
             </div>
-=======
->>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
         </div>
         </div>
         
         </div>
          
-         
-<<<<<<< HEAD
-         <!-- <div class="spacer">
-
-         </div> -->
-=======
+<!--          
          <div class="spacer">
 
-         </div>
->>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
+         </div> -->
 
     </div> 
 
@@ -94,7 +91,8 @@
        data(){ 
             return {
                 scrollPosition:null,
-                sidebar:false
+                sidebar:false,
+                dropmenu:false
              } 
         },
         methods:{
@@ -103,22 +101,29 @@
             },
             openSidebar:function () { 
                 this.sidebar=!this.sidebar
+             },
+             dropmenuChange:function(){
+                 console.log("clo=ickeddn");
+                 
+                 this.dropmenu=!this.dropmenu
              }
+        },
+        computed:{
+           loggedIn(){
+             return this.$store.getters.loggedIn;
+         },
         },
         created:function(){
             window.addEventListener('scroll',this.handleScroll)
         },
         destroyed:function(){
-<<<<<<< HEAD
             
         },
         watch:{
             $route(to,from){
-                this.sidebar=false
+                this.sidebar=false;
+                this.dropmenu=false;
             }
-=======
-            window.adEventListener('scroll',this.handleScroll)
->>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
         },
         mounted() {
 
@@ -126,7 +131,6 @@
     }
 </script>
 <style src="cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css"></style>
-<<<<<<< HEAD
 <style lang="scss">
   li{
           list-style: none;
@@ -153,9 +157,6 @@
 </style>
 <style lang="scss" scoped>
       
-=======
-<style lang="scss" scoped>
->>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
      .spacer{
          height: 1000px;
          background: #ccc
@@ -183,12 +184,8 @@
 
     }
     .bottom-nav-con{
-<<<<<<< HEAD
         // box-shadow:1px 2px 3px #9cabc3; 
         box-shadow: 0px 0px 25px -10px;
-=======
-        box-shadow:1px 2px 3px #9cabc3; 
->>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
         transition: 0.3s ease;
           &.added{
             position: fixed;
@@ -251,23 +248,20 @@
         position: fixed;
         left: 0px;
         top: 70px;
-<<<<<<< HEAD
         background: #1f2037;
-=======
-        background: black;
->>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
         width: 0vw;
         overflow: hidden;
         transition: 0.3s ease-in-out;
         height: 100%;
         height: 100%;
-<<<<<<< HEAD
+        z-index: 999;
         & .ul{
             margin: 0px;
             padding: 0px;
         }
         & .ul li{
             list-style: none;
+            
             & a{
                 display: block;
                 padding: 10px;
@@ -315,12 +309,6 @@
         background-size: cover;
     }
   
-=======
-        &.added{
-            width: 80vw
-        }
-    }
->>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
     .bar{
             position: absolute;
             right: 20px;
@@ -354,12 +342,45 @@
             transition: 0.5s ease;
         }
     }
-<<<<<<< HEAD
-    
-=======
->>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
+    .logged-avata{
+        border-radius: 50%;
+        border:2px solid #fff;
+        box-shadow: 2px 3px 3px #ddd;
+        cursor: pointer;
+    }
+    .logged-avata-mobile{
+        display: none
+    }
 
-    @media (min-width: 320px) and (max-width: 640px) {
+
+    .dropdown{
+        // padding: 10px;
+        background: #fff;
+        width: 200px;
+        position: absolute;
+        right: 10px;
+        display: none;
+        border-radius: 5px;
+        box-shadow: 2px 2px 3px #ddd;
+        & ul{
+            margin: 0px;
+            padding: 0px;
+           & li a{
+               padding: 10px 10px;
+                border-bottom: 1px solid #ccc;
+                display: block;
+            }
+            display: block;
+        }
+        &.added{
+            display: block;
+            animation: fadeInRight 0.3s;
+        }
+    }
+    
+    
+
+    @media (max-width: 640px) {
           .bottom-nav div:nth-child(2){
                 display: none
          }  
@@ -369,11 +390,17 @@
          .bar{
              display:block;
          }
+         .logged-avata-mobile{
+            display: block;
+            position: absolute;
+            float: right;
+            top: 9px;
+            right: 60px; 
+    }        
     }
 
 
     @media screen and (max-width: 320px) {
-
     }
 
 </style>

@@ -1,17 +1,9 @@
 <template>
     <div>
          <nav-view></nav-view>
-<<<<<<< HEAD
          <!-- <router-link :to="{name:'about'}" class="btn btn-default btn-flat">About</router-link> -->
-
-
-=======
-
-
-         <router-link :to="{name:'about'}" class="btn btn-default btn-flat">About</router-link>
-
->>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
-              <router-view></router-view>
+              <router-view></router-view><br>
+              <vue-progress-bar></vue-progress-bar>
 
          <h3>Footer</h3>
     </div>
@@ -29,10 +21,22 @@
             }
         },
         mounted() {
+            this.$Progress.finish()
             console.log('Component mounted dd.');
-        
         },
         created(){
+            this.$Progress.start();
+            this.$router.beforeEach((to, from, next) => {
+                this.$Progress.start();
+                console.log('started',this.$Progress);
+                
+                next()
+            })
+
+            this.$router.afterEach( route => {
+                //these hooks do not get a next function and cannot affect the navigation}
+                this.$Progress.finish()
+            })
             
         },
         

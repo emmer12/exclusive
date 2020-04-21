@@ -1,27 +1,33 @@
 import AccountCreated from '../components/pages/AccountCreated.vue';
 import AccountActivated from '../components/pages/AccountActivated.vue';
 import HomePage from '../components/pages/HomePage.vue';
-<<<<<<< HEAD
 import GalleryPage from '../components/pages/GalleryPage.vue';
 import AboutPage from '../components/pages/AboutPage.vue';
 import AdminLoginPage from '../components/auth/AdminLoginPage.vue';
-=======
-import AboutPage from '../components/pages/AboutPage.vue';
->>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
+import DashboardPage from '../components/auth/DashboardPage.vue';
+import Logout from '../components/auth/Logout.vue';
  
 export const routes = [
 { 
     path: '/',
     name: 'home',
-    component: HomePage
+    component: HomePage,
+    meta:{
+        // progress:{
+        //     func:[
+        //         {call:'color',modifier:'temp',argument:'#ffb000'},
+        //         {call:'fail',modifier:'temp',argument:'red'},
+        //         {call:'location',modifier:'temp',argument:'top'},
+        //         // {call:'color',modifier:'temp',argument:'#ffb000'},
+        //     ]
+        //}
+    }
 },
 { 
     path: '/about',
     name: 'about',
     component: AboutPage
 },
-<<<<<<< HEAD
-
 { 
     path: '/gallery',
     name: 'gallery',
@@ -30,10 +36,27 @@ export const routes = [
 { 
     path: '/admin/exclusive',
     name: 'admin',
-    component: AdminLoginPage
+    component: AdminLoginPage,
+    meta:{
+        requiresVisitor:true,            
+    }
 },
-=======
->>>>>>> 3b20313a7b1fcebf162ed0cd2ee25a6a7dbe75e8
+{ 
+    path: '/dashboard',
+    name: 'dashboard',
+    component: DashboardPage,
+    meta:{
+        requiresAuth:true,            
+    }
+},
+{ 
+    path: '/logout',
+    name: 'logout',
+    component: Logout,
+    meta:{
+        requiresAuth:true,            
+    }
+},
 // { 
 //     path: '/about',
 //     name: 'about',

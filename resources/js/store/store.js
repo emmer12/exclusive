@@ -8,85 +8,46 @@ axios.defaults.baseURL="http://localhost:8000/api"
 
 export const store =new Vuex.Store({
     state:{
-      feeds:[],
-      userFeed:[],
-      subCategory:[],
-      allCategory:[],
-      user:window.loggedUser,
-      filterd:"all",
-      ajaxLoading:true,
-      mentors:[],
-      serverError:false
+      token:localStorage.getItem('token') || null,
+      serverError:false,
+      posts:null
     },
     mutations:{
-        getCategory(state,data){
-            state.allCategory=data;
+        retrieveToken(state,data){
+            state.token=data
         },
-       getSubCategory(state,data){
-           state.subCategory=data
+        destroyToken(state){
+            state.token=null;
+        },  
+        getPost(state,data){
+            state.posts=data;
         },
-        getFeeds(state,data){
-            state.feeds=data
-        },
-        subAdded(state,data){
-            state.user=data
-        },
-        filterd(state,data){
-            console.log(data)
-            state.filterd=data
-            },
-        isLoading(state,data){
-            state.ajaxLoading=data
-        },    
-        getMentor(state,data){
-            state.mentors=data
-            console.log(data);
-        },
-        serverError(state,data){
-            state.serverError=true
-        },
-        getUserFeeds(state,data){
-            state.userFeed=data;
-            context.commit("isLoading",false)
+        deletePost(state,data){
+           let index=state.posts.findIndex(item=>item.id == data)
+           state.posts.splice(index,1)
         }
-},
+ },
     getters:{
-        getSubCategory(state){
-            return state.subCategory
-        },
-        user(state){
-            return state.user
-        },
         loggedIn(state){
-            return state.user
+            return state.token
         },
-        getMentors(state){
-            return state.mentors;
+        posts(state){
+            return state.posts
         },
-        getFeeds(state){
-            return state.feeds
-        },
-        getUserFeeds(state){
-            return state.userFeed
-        },
-        feedFiltered(state){
-            if(state.filterd=="all"){
-                return state.feeds.data;
-            }else{
-               return state.feeds.data.filter(feed=>{
-                    if(state.filterd===feed.category.category){
-                        return state.feeds;
-                   }
-                })
-            }
-          return state.feeds.data
-        },
-        filterd(state){
-            return state.filterd
-        },
-        isLoading(state){
-            return state.ajaxLoading;
-        },
+        
+        // feedFiltered(state){
+        //     if(state.filterd=="all"){
+        //         return state.feeds.data;
+        //     }else{
+        //        return state.feeds.data.filter(feed=>{
+        //             if(state.filterd===feed.category.category){
+        //                 return state.feeds;
+        //            }
+        //         })
+        //     }
+        //   return state.feeds.data
+        // },
+
         serverError(state){
             return state.serverError;
         }    
@@ -94,10 +55,14 @@ export const store =new Vuex.Store({
         
     },
     actions:{
-        regiseterUser(context,data){
+        loginUser(context,data){
             return new Promise((resolve,reject)=>{
-                axios.post('/register',data)
+                axios.post('/login',data)
                 .then(response=>{
+                    let token =response.data.success.token;
+                    localStorage.setItem('token',token)
+                    
+                    context.commit("retrieveToken",token)
                     resolve(response)
                 })
                 .catch(err=>{
@@ -106,14 +71,70 @@ export const store =new Vuex.Store({
             })
         },
 
-        getCategory(context){
-            axios.get('/category')
+        destroyToken(context){
+            axios.defaults.headers.common['Authorization']='Bearer ' + context.state.token
+            if (context.getters.loggedIn) {
+                return new Promise((resolve,reject)=>{
+                    axios.post('/logout')
+                    .then(response=>{
+                        localStorage.removeItem('token')
+                        context.commit("destroyToken")
+                        resolve(response)
+                    })
+                    .catch(err=>{
+                        reject(err)
+                    })
+                })
+            }
+        },
+        postData(context,data){
+            axios.defaults.headers.common['Authorization']='Bearer ' + context.state.token
+            return new Promise((resolve,reject)=>{
+                // const config={
+                //     headers:{
+                //         'content-type':'multipart/formd-data',
+                //     }
+                // }
+                console.log(data);
+                
+                let formData=new FormData();
+                formData.append('display',data.fileUp);
+                formData.append('title',data.title);
+                formData.append('description',data.description);
+                axios.post('/newpost',formData)
+                .then(response=>{
+                   console.log("sucessss");
+                    // context.commit("retrieveToken",token)
+                    resolve(response)
+                })
+                .catch(err=>{
+                    console.log("fail");
+                    
+                    reject(err)
+                })
+            })
+        },
+
+        getPost(context){
+            axios.defaults.headers.common['Authorization']="Bearer " + context.state.token
+            axios.get('/allpost')
             .then(response=>{
-                context.commit("getCategory",response.data)
+                context.commit("getPost",response.data.data)
             })
             .catch(err=>{
                 console.log(err);
             })  
+        },
+        deletePost(context,index){
+            context.commit("deletePost",index)
+            // axios.defaults.headers.common['Authorization']="Bearer " + context.state.token
+            // axios.get('/allpost')
+            // .then(response=>{
+            //     context.commit("getPost",response.data.data)
+            // })
+            // .catch(err=>{
+            //     console.log(err);
+            // })  
         },
 
         getSubCategory(context,category){
