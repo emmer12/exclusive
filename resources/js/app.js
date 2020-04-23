@@ -7,7 +7,7 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import { extend } from 'vee-validate';
 import { required,email} from 'vee-validate/dist/rules';
 import VueProgressBar from 'vue-progressbar';
-import { store } from './store/store'
+import { store } from './store/'
 
 import {routes} from './route/index';                                                                                     
 import 'sweetalert2/dist/sweetalert2.min.css';

@@ -1,60 +1,4 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import axios from 'axios'
-import { resolve } from 'url';
-import { reject } from 'q';
-Vue.use(Vuex);
-axios.defaults.baseURL="http://localhost:8000/api"
-
-export const store =new Vuex.Store({
-    state:{
-      token:localStorage.getItem('token') || null,
-      serverError:false,
-      posts:null
-    },
-    mutations:{
-        retrieveToken(state,data){
-            state.token=data
-        },
-        destroyToken(state){
-            state.token=null;
-        },  
-        getPost(state,data){
-            state.posts=data;
-        },
-        deletePost(state,data){
-           let index=state.posts.findIndex(item=>item.id == data)
-           state.posts.splice(index,1)
-        }
- },
-    getters:{
-        loggedIn(state){
-            return state.token
-        },
-        posts(state){
-            return state.posts
-        },
-        
-        // feedFiltered(state){
-        //     if(state.filterd=="all"){
-        //         return state.feeds.data;
-        //     }else{
-        //        return state.feeds.data.filter(feed=>{
-        //             if(state.filterd===feed.category.category){
-        //                 return state.feeds;
-        //            }
-        //         })
-        //     }
-        //   return state.feeds.data
-        // },
-
-        serverError(state){
-            return state.serverError;
-        }    
-        
-        
-    },
-    actions:{
+export default {
         loginUser(context,data){
             return new Promise((resolve,reject)=>{
                 axios.post('/login',data)
@@ -89,14 +33,7 @@ export const store =new Vuex.Store({
         },
         postData(context,data){
             axios.defaults.headers.common['Authorization']='Bearer ' + context.state.token
-            return new Promise((resolve,reject)=>{
-                // const config={
-                //     headers:{
-                //         'content-type':'multipart/formd-data',
-                //     }
-                // }
-                console.log(data);
-                
+            return new Promise((resolve,reject)=>{                
                 let formData=new FormData();
                 formData.append('display',data.fileUp);
                 formData.append('title',data.title);
@@ -114,27 +51,71 @@ export const store =new Vuex.Store({
                 })
             })
         },
-
+        updateData(context,data){
+            axios.defaults.headers.common['Authorization']='Bearer ' + context.state.token
+            return new Promise((resolve,reject)=>{
+                let formData1=new FormData();
+                formData1.append('id',data.id);
+                formData1.append('display',data.fileUp);
+                formData1.append('title',data.title);
+                formData1.append('description',data.description);
+                
+                axios.post('/updatepost',formData1)
+                .then(response=>{
+                   console.log("sucessss");
+                    resolve(response)
+                })
+                .catch(err=>{
+                    console.log("fail");
+                    
+                    reject(err)
+                })
+            })
+        },
         getPost(context){
             axios.defaults.headers.common['Authorization']="Bearer " + context.state.token
-            axios.get('/allpost')
+                context.commit('loading',true)
+            return new Promise((resolve,reject)=>{
+                axios.get('/allpost')
+                .then(response=>{
+                    context.commit('loading',false)
+                    context.commit("getPost",response.data.data)
+                    resolve(response.data)
+                })
+                .catch(err=>{
+                    context.commit('loading',false)
+                    console.log(err);
+            })
+         })
+        },
+        getById(context,id){
+            axios.defaults.headers.common['Authorization']="Bearer " + context.state.token
+                return new Promise((resolve,reject)=>{
+                axios.get('/getpost/' + id)
+                .then(response=>{
+                    context.commit("getById",response.data.data)
+                    resolve(response.data.data)
+                })
+                .catch(err=>{
+                    console.log(err);
+         })
+        })
+        },
+        deletePost(context,id){
+            axios.defaults.headers.common['Authorization']="Bearer " + context.state.token
+            console.log(id,'sent isds');
+            
+            axios.delete('/deletePost',{
+                data:{
+                    ids:id
+                }
+            })
             .then(response=>{
-                context.commit("getPost",response.data.data)
+                context.commit("deletePost",id)
             })
             .catch(err=>{
                 console.log(err);
             })  
-        },
-        deletePost(context,index){
-            context.commit("deletePost",index)
-            // axios.defaults.headers.common['Authorization']="Bearer " + context.state.token
-            // axios.get('/allpost')
-            // .then(response=>{
-            //     context.commit("getPost",response.data.data)
-            // })
-            // .catch(err=>{
-            //     console.log(err);
-            // })  
         },
 
         getSubCategory(context,category){
@@ -222,4 +203,3 @@ export const store =new Vuex.Store({
         }
 
     }
-}) 

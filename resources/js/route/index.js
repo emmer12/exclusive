@@ -3,6 +3,9 @@ import AccountActivated from '../components/pages/AccountActivated.vue';
 import HomePage from '../components/pages/HomePage.vue';
 import GalleryPage from '../components/pages/GalleryPage.vue';
 import AboutPage from '../components/pages/AboutPage.vue';
+import NewPost from '../components/partials/NewPost.vue';
+import EditPost from '../components/partials/EditPost.vue';
+import ShowPost from '../components/partials/ShowPost.vue';
 import AdminLoginPage from '../components/auth/AdminLoginPage.vue';
 import DashboardPage from '../components/auth/DashboardPage.vue';
 import Logout from '../components/auth/Logout.vue';
@@ -45,6 +48,33 @@ export const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: DashboardPage,
+    meta:{
+        requiresAuth:true,            
+    }
+},
+
+{ 
+    path: '/dashboard/add',
+    name: 'add',
+    component:NewPost,
+    meta:{
+        requiresAuth:true,            
+    }
+},
+
+{ 
+    path: '/dashboard/:id/edit',
+    name: 'edit',
+    component: EditPost,
+    meta:{
+        requiresAuth:true,            
+    }
+},
+
+{ 
+    path: '/dashboard/show/:id',
+    name: 'show',
+    component: ShowPost,
     meta:{
         requiresAuth:true,            
     }

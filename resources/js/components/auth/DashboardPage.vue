@@ -1,14 +1,10 @@
 <template>
     <div>
-        <div v-if="addNew">
+        <!-- <div v-if="addNew">
           <new-post @backList="backList"></new-post> 
-       </div>       
+       </div>        -->
       <div v-if="postList">
         <post-list @addPost="addPost"></post-list>
-      </div>
-
-      <div v-if="editting">
-        Editting.....
       </div>
     </div>
 </template>

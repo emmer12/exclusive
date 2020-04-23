@@ -8,10 +8,9 @@
                         </button>
                     </router-link>
                    
-                   <button class="circular ui icon button large green" @click="processPost">
-                        <i class="icon save"></i> Save
+                   <button class="circular ui icon button large green" @click="processUpdate">
+                        <i class="icon save"></i> Update
                     </button>
-
                 </div>
             </div>
         <transition name="fade wow fadeIn" enter-active-class="animated fadeIn" >
@@ -45,7 +44,6 @@
 </template>
 
 
-<script src="/vendor/laravel-filemanager/js/lfm.js"></script>
 <script>
 import { ValidationProvider } from 'vee-validate';
 export default {
@@ -55,6 +53,7 @@ export default {
         data() {
             return {
                 newPost:{
+                    id:"",
                     title:"",
                     description:"",  
                     fileUp:""
@@ -73,18 +72,18 @@ export default {
                }
                return false;
             },
-           processPost:function(){
+           processUpdate:function(){
                this.$Progress.start();
-               this.loading=true;
-               this.$store.dispatch('postData',this.newPost).then((response)=>{
+               this.loading=true;                                                                  
+               this.$store.dispatch('updateData',this.newPost).then((response)=>{
                    this.loading=false;
                    this.$Progress.finish();
                    this.newPost.title="" 
                    this.newPost.description=""
                    this.newPost.fileUp="";
                    this.$toast.success({
-                        title:"Post Created",
-                        message:"post successfully created "
+                        title:"Post Updated",
+                        message:"post successfully updated "
                     });
                     this.$router.push({name:'dashboard'})
                }).catch(err=>{
@@ -97,6 +96,7 @@ export default {
                         message:"please make sure that each field are filled correctly"
                     });
                })
+
                
            },
            processForm:function(e){
@@ -105,8 +105,15 @@ export default {
            },
            backList:function(){
                this.$emit('backList');
-           }
+           },
             
+        },
+        created() {
+            this.$store.dispatch("getById",this.$route.params.id).then((res)=>{
+                this.newPost.id=res[0].id
+                this.newPost.title=res[0].title
+                this.newPost.description=res[0].description
+            })        
         },
 }
 </script>

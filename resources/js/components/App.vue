@@ -2,7 +2,11 @@
     <div>
          <nav-view></nav-view>
          <!-- <router-link :to="{name:'about'}" class="btn btn-default btn-flat">About</router-link> -->
-              <router-view></router-view><br>
+              <transition name="fade" enter-active-class="animated fadeIn"  leave-active-class="animated fadeOut" mode="out-in">
+
+
+                  <router-view></router-view>
+              </transition>
               <vue-progress-bar></vue-progress-bar>
 
          <h3>Footer</h3>
