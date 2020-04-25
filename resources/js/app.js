@@ -7,14 +7,15 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import { extend } from 'vee-validate';
 import { required,email} from 'vee-validate/dist/rules';
 import VueProgressBar from 'vue-progressbar';
+import CKEditor from '@ckeditor/ckeditor5-vue';
 import { store } from './store/'
 
 import {routes} from './route/index';                                                                                     
 import 'sweetalert2/dist/sweetalert2.min.css';
+import Slick from 'vue-slick';
 
 
-
-
+Vue.use(CKEditor);
 Vue.use(VueSweetalert2);
 Vue.use(VueProgressBar,{
     color:'#41B883',
@@ -88,6 +89,12 @@ router.beforeEach((to,from,next)=>{
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+Vue.directive('plaintext',{
+    bind(el,binding,Vnode){
+        el.innerHTML=el.InnerText
+    }
+})
+
 
 
 Vue.component(

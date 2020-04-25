@@ -93,7 +93,7 @@ class BlogController extends Controller
         $post->description=$request->input('description');
         
         if ($request->hasFile('display')) {
-          $post->preview_image=$fileNametoStore;
+          $post->display=$fileNametoStore;
         }
 
         $post->save();
@@ -126,8 +126,8 @@ class BlogController extends Controller
 
    public function getPost(Request $request,$id)
    {
-    $post=NewPost::findOrFail($id)->get();
-    return singlePostResource::collection($post);
+    $post=NewPost::findOrFail($id);
+    return response()->json(['data'=>[$post]], 200);
    }
 
 }

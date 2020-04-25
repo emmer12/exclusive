@@ -2,7 +2,7 @@
     <div class="post-container">
 
             <div class="action-con">
-                <div class="pull-left" v-show="selected.length>0">
+                <div class="pull-left" style="float: left;" v-show="selected.length>0">
                     <div class="ui button">{{selected.length}} Selected </div>
                 </div>
                 <div class="right">
