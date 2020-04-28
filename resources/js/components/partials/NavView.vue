@@ -214,7 +214,7 @@
             position: relative;
             color: #888;
             font-weight: 700;
-            text-transform: uppercase;
+            // text-transform: uppercase;
             padding: 10px 12px;
             &:hover{
                 text-decoration: none;
