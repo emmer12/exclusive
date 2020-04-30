@@ -1,12 +1,16 @@
 <template>
     <div >
           <div class="pofollio">
-            <h1 class="heading">Portfollio</h1>
+           <div class="container">
+            <div class="heading">
+               <h1>Portfollio</h1>
+            </div>
+             </div><br>
 
             <div style="width:100%;overflow-x:auto">
               <div class="ui menu">
               <div class="item">
-                <div class="ui button" @click="filter('all','all')">All</div>
+                <div class="ui button" ref="all" @click="filter('all','all')">All</div>
               </div>
               <div class="item">
                 <div class="ui button" @click="filter('filterByText','Wedding')" >Wedding</div>
@@ -25,34 +29,63 @@
             </div>
           </div>
 
+         
 
             <div class="gri">
-                <isotope ref='cpt' :options='option' :list="urls"  class="isDefault grid" @filter="filterOption=arguments[0]" :item-selector="'element-item'" id="root_isotope">
-                    <div  v-for="element in urls" :key="element.id" class="grid-items" style="padding:10px;box-shadow: 2px 3px 4px #ccc;margin: 5px;">
-                        <img v-if="element.category!='Video'" v-lazy="element.img" alt="" width="300px" height="240px">
-                        <video v-if="element.category=='Video'" :src="element.img" width="300px" height="240px" controls></video>
+                <isotope ref='cpt' :options='option' :list="urls"   v-images-loaded:on.progress="layout" class="wow fadeIn" @filter="filterOption=arguments[0]" :item-selector="'element-item'" id="root_isotope">
+                    <div data-toggle="modal" :data-target="'#modelId'+element.id"  v-for="element in urls" :key="element.id" class="grid-items" style="padding:10px;box-shadow: 2px 3px 4px #ccc;margin: 5px;">
+                        <div class="grid-sizer"></div> 
+                        <!-- <LightBox :media="[{src:element.img}]"></LightBox> -->
+                        <img  data-toggle="modal" :data-target="'#modelId'+element.id" v-if="element.category!='Video'" :src="element.img" alt="" width="100%">
+                        <video   v-if="element.category=='Video'" :src="element.img" width="100%" ></video>
+                        <div class="modal fade" :id="'modelId'+element.id" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">{{element.category}}</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                              </div>
+                              <div class="modal-body">
+
+                               <img  v-if="element.category!='Video'" :src="element.img" alt="" width="100%">
+                               <video v-if="element.category=='Video'" :src="element.img" width="100%" controls></video>
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                     </div>
                 </isotope>
            </div>                                             
 
        </div>
-    </div>
 </template>
 
 
 <script>
 import isotope from 'vueisotope';
 import layout from 'isotope-layout';
-
+import imagesLoaded from 'vue-images-loaded'
+import LightBox from 'vue-image-lightbox'
+import 'vue-image-lightbox/dist/vue-image-lightbox.min.css';
 var count=0;
 export default {
   components:{
-    isotope
+    isotope,
+    LightBox
+        },
+  directives: {
+    imagesLoaded,
         },
         data() {
           var his=this;
             return {
-             filterText:"",
+             filterText:"all",
              filterOption:'all',
              layouts:[
                'masonry',
@@ -113,7 +146,7 @@ export default {
                 },
                  {
                   id:10,
-                  img:'/videos/demo1.mp4',
+                  img:'/videos/demo3.mp4',
                   category:"Video"
                 },
                                                                                                                                                                                                                                                                                                                                                               
@@ -129,6 +162,10 @@ export default {
                     
                     },  
                   itemSelector: '.grid-item',
+                  percentPosition:true,
+                  mansory:{
+                    columnWidth:'.grid-sizer'
+                  }
                 },
            }
          }
@@ -139,10 +176,16 @@ export default {
             console.log(key);
             
             this.$refs.cpt.filter(key)
-             }
+             },
+          layout:function(){
+            this.$refs.cpt.layout('masonry');
+        }     
         },
         mounted() {
           var his=this;
+         setTimeout(() => {
+            // this.$refs.all.click()
+         },10000);
           
         },
 }
@@ -165,9 +208,21 @@ export default {
          }
     }
 }
-
 .isoDefault{
   position:relative;
-  min-height: 210px;
+  //min-height: 210px;
+}
+.grid-items,.grid-sizer{
+  width:20%;
+}
+@media screen and (max-width: 640px){
+
+  .grid-items,.grid-size{
+    width: 30%;
+
+    & img{
+      width:100%;
+    }
+}
 }
 </style>
