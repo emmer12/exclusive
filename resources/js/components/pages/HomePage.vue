@@ -5,7 +5,7 @@
         <div class="left-detials">
             <h1 class="wow bounceInLeft">We give you a memory You will never forget</h1>
             <p class="wow fadeIn">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut quod perferendis accusamus amet, eos excepturi eum temporibus fugit eveniet esse.</p>
-             <div class="ui button wow bounceInUp get-started" data-wow-delay="0.8s">Get started</div> <div class="our-vid ui  button basic orange" >Our recent Work <i class="icon play wow fadeInRight" data-wow-delay="1.5s"></i></div>
+             <div class="ui button wow bounceInUp get-started" data-wow-delay="0.8s">Get started</div> <div class="our-vid u  button orange" >Our recent Work <i class="icon play wow fadeInRight" data-wow-delay="1.5s"></i></div>
         </div>
 
         <div class="svg">
@@ -15,28 +15,53 @@
 
 <!-- Services section -->
     <div>
-        <div class="container">
+        <div class="container wwd-con">
+            <h1 class="heading wow bounceInLeft">What we Do <i class="icon camera"></i></h1>
             <div class="row">
                 <div class="col-md-4">
-                    <div >
-                        Grid One
+                    <div class="classic-card">
+                       <div>
+                           <img v-lazy="'/images/works/w2.jpg'" alt="" width="100%" height="240px">
+                       </div>
+                       <div class="details">   
+                           <h4>Wedding Photography</h4>
+                        </div>
                     </div>
                 </div>
 
-                  <div class="col-md-4">
-                    <div>
-                        Grid Two
+                 <div class="col-md-4">
+                    <div class="classic-card">
+                       <div>
+                           <img v-lazy="'/images/works/w1.jpg'" alt="" width="100%" height="240px">
+                       </div>
+                       <div class="details">   
+                           <h4>Studio Photography</h4>
+                        </div>
                     </div>
-                </div>
+                </div>  
 
-                <div class="col-md-4">
-                    <div>
-                        Grid Three
+                 <div class="col-md-4">
+                    <div class="classic-card">
+                       <div>
+                           <img v-lazy="'/images/works/w10.jpg'" alt="" width="100%" height="240px">
+                       </div>
+                       <div class="details">   
+                           <h4>Wedding Photography</h4>
+                        </div>
                     </div>
-                </div>
+                </div>  
+
+
+
+              
+
+
             </div>
         </div>
 
+
+                <portfolio></portfolio>
+       <br><br>
     </div>
   </div>
 
@@ -48,10 +73,13 @@
 <script>
    import SliderView from "../sliders/SliderView.vue";
    import Slick from 'vue-slick';
+   import Portfolio from "../partials/Portfoleo";
+
    export default {
        components: {
            SliderView,
-          Slick
+           Slick,
+           Portfolio
            },
         data(){ 
             return {
@@ -110,14 +138,21 @@
 // <style src="slick-carousel/slick/slick.css"></style>
 <style src="slick-carousel/slick/slick-theme.css"></style>
 <style lang="scss" scoped>
-  $color: #564fcc;
+  $color: #8783ce;
   $secondary:rgb(86, 79, 204);
+  .heading{
+      color:#2f2e41;
+      font-weight: 800;
+      font-size: 30px;
+      padding: 10px;
+      letter-spacing: 4px;
+
+  }
   .banner{
       display:grid;
       grid-template-columns: repeat(2,2fr);
       perspective:900px;
       background:url(/images/b1.png);
-      background: url(/images/b1.png);
         background-repeat: no-repeat;
         background-size: 50%;
         background-position: bottom left;
@@ -200,14 +235,59 @@
     }
 
 }
+}
 
-  }
+.wwd-con{
+    background: url(/images/svg/liveShape-bg.svg) no-repeat;
+    background-position: right;
+}
+.classic-card{
+    height: 260px;
+    overflow: hidden;
+    padding:10px;
+    background: white;
+    border-radius: 5px;
+    border:1px solid #ccc;
+    cursor: pointer;
+    transition:0.3s;
+    & img{
+            transition: 0.3s ease;
+        }
+    &:hover .details{
+        color:#fff;
+        bottom: 50%;
+        background: rgba(0,0,0,0.5);
+        transform: scale(1)
+        
+    }
+
+    &:hover img{
+        transform: scale(1.2);
+        opacity:0.7;
+        bottom:0px;
+    }
+
+    & .details{
+        position: relative;
+        font-family: cursive;
+        transition:all 0.3s 0.7s;
+        padding: 10px;
+        text-align: center;
+        transform: scale(0.5);
+        bottom: -5px;
+        border-left:4px solid $color; 
+        border-right:4px solid $color 
+
+    }
+}
+
 
 
   @media screen and(max-width:640px) {
       .banner{
           display: flex;
           flex-direction: column-reverse;
+          background-size: 100%;
         & .svg{
             width: 70%;
             overflow: hidden;
@@ -224,5 +304,18 @@
         }
     }
   }
+
+
+  .classic-card{
+    height: 260px;
+    & .details{
+        bottom: 50px;
+        color:#fff;
+        // bottom: 50%;
+        background: rgba(0,0,0,0.5);
+        transform: scale(1)
+
+    }
+}
   }
 </style>

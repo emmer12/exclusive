@@ -1,14 +1,16 @@
 <template>
         <div class="container">
-            Gallery
+            <portfolio></portfolio>
         </div> 
 </template>
 <script>
+
+import Portfolio from "../partials/Portfoleo" 
    
    
    export default {
        components: {
-          
+          Portfolio
         },
         data(){ 
             return {

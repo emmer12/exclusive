@@ -8,6 +8,7 @@ import { extend } from 'vee-validate';
 import { required,email} from 'vee-validate/dist/rules';
 import VueProgressBar from 'vue-progressbar';
 import CKEditor from '@ckeditor/ckeditor5-vue';
+import VueLazyload from 'vue-lazyload'
 import { store } from './store/'
 
 import {routes} from './route/index';                                                                                     
@@ -15,6 +16,13 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import Slick from 'vue-slick';
 
 
+
+Vue.use(VueLazyload,{
+    preLoad: 1.3,
+    error: 'dist/error.png',
+    loading: '/images/siteloading.gif',
+    attempt: 1
+  })
 Vue.use(CKEditor);
 Vue.use(VueSweetalert2);
 Vue.use(VueProgressBar,{
