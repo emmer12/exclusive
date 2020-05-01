@@ -18,13 +18,15 @@
         <portfolio></portfolio>
 
 
-        <!-- News Letter -->
         <br>
+
+        <!-- Testimony Section -->
+
+        <testimony></testimony>
+        <!-- <br> -->
+        <!-- News Letter -->
         <news-letter></news-letter>
 
-
-        <br>
-        <br>
 
    </div>
 
@@ -40,6 +42,7 @@
    import BannerAni from "../partials/BannerAni"
    import BannerVid from "../partials/BannerVid"
    import Wwdo from "../partials/Wwdo"
+   import Testimony from "../partials/Testimony"
    import NewsLetter from "../partials/NewsLetter"
 
    export default {
@@ -50,6 +53,7 @@
            BannerVid,
            Portfolio,
            Wwdo,
+           Testimony,
            NewsLetter
            },
         data(){ 
@@ -66,34 +70,7 @@
 
         },
         mounted() {
-           $(".slider").slick({
-                    // normal options...
-                    infinite: false,
-
-                    // the magic
-                    responsive: [{
-
-                        breakpoint: 1024,
-                        settings: {
-                            slidesToShow: 3,
-                            infinite: true
-                        }
-
-                        }, {
-
-                        breakpoint: 600,
-                        settings: {
-                            slidesToShow: 2,
-                            dots: true
-                        }
-
-                        }, {
-
-                        breakpoint: 300,
-                        settings: "unslick" // destroys slick
-
-                        }]
-                    });
+          
         },
         computed:{
            LoggedUser(){
@@ -121,7 +98,6 @@
             letter-spacing: 4px;
             font-family: 'Fugaz One', cursive;
             position: relative;
-            width:300px;
             margin: 10px;
       }
 
@@ -130,7 +106,7 @@
           content:'';
           position: absolute;
           height:3px;
-          width:30%;
+          width:100px;
           background: #555;
           bottom: 0px;
           left:0px;

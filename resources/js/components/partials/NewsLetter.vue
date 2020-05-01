@@ -1,5 +1,6 @@
 <template>
-   <div class="news-con">
+   <flux-parallax src= "/images/slider/big_img5.jpg"  style="height:300px;width:100%">
+       <div class="news-con">
         <div class="subscribe">
             <h4>News Leter</h4>  
             <p>Sing up to get weekly emails with inspiration in your inbox</p>
@@ -10,10 +11,16 @@
             </div>        
         </div> 
    </div>
+   </flux-parallax>
 </template>
 
 <script>
+import {FluxParallax} from 'vue-flux';
+
 export default {
+    components:{
+        FluxParallax,
+    }
 
 }
 </script>
@@ -23,7 +30,8 @@ export default {
  $secondary:rgb(86, 79, 204);
  
  .news-con{
-    background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)) ,url(/images/slider/big_img5.jpg) no-repeat;
+    // background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)) ,url(/images/slider/big_img5.jpg) no-repeat;
+    // background-attachment: fixed;
     background-position: center;
     background-size: cover;
     height:300px;

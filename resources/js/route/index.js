@@ -1,8 +1,9 @@
 import AccountCreated from '../components/pages/AccountCreated.vue';
 import AccountActivated from '../components/pages/AccountActivated.vue';
+import AboutPage from '../components/pages/AboutPage.vue';
+import ContactPage from '../components/pages/ContactPage.vue';
 import HomePage from '../components/pages/HomePage.vue';
 import GalleryPage from '../components/pages/GalleryPage.vue';
-import AboutPage from '../components/pages/AboutPage.vue';
 import NewPost from '../components/partials/NewPost.vue';
 import EditPost from '../components/partials/EditPost.vue';
 import ShowPost from '../components/partials/ShowPost.vue';
@@ -30,6 +31,11 @@ export const routes = [
     path: '/about',
     name: 'about',
     component: AboutPage
+},
+{ 
+    path: '/contact',
+    name: 'contact',
+    component: ContactPage
 },
 { 
     path: '/gallery',

@@ -362,6 +362,7 @@
         display: none;
         border-radius: 5px;
         box-shadow: 2px 2px 3px #ddd;
+        z-index: 999;
         & ul{
             margin: 0px;
             padding: 0px;
