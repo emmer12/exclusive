@@ -21,7 +21,7 @@
           <!--start-shop-head -->
           <nav class="breadcrumb">
             <router-link to="/" class="breadcrumb-item">
-              <i class="icon home"></i> Homep
+              <i class="icon home"></i> Home Page
             </router-link>
             <span class="breadcrumb-item active">{{page}}</span>
           </nav>
@@ -46,6 +46,11 @@ export default {
 .banner2 {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
     url(/images/banners/banner2.jpg);
+}
+.banner3 {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
+  url(/images/banners/banner3.jpg);
+  background-position: bottom;
 }
 .top-banner-area {
   color: White;

@@ -43,18 +43,9 @@
         },
         methods: {
             scrollTop:function(e){
-                var elem=window.document.body.offsetHeight;
+                console.log('scrolling');
                 
-                
-               let anim =setInterval(() => {
-                console.log(elem);
-                   window.scrollTo(0,elem)
-                   if (elem==0) {
-                      clearInterval(anim)
-                   }
-                   elem--
-                },0.3);
-                
+              $('html,body').animate({scrollTop:0},'600','swing');
             }
         },
         created(){
@@ -80,8 +71,8 @@
    .scroll-top{
        height:50px;
        width:50px;
-       right:50px;
-       bottom: 50px;
+       right:10px;
+       bottom: 60px;
        position: fixed;
        background:white;
        border-radius: 50%;
@@ -90,5 +81,7 @@
        text-align: center;
        font-size: 16px;
        cursor:pointer;
+       z-index: 999;
+       
    }
 </style>

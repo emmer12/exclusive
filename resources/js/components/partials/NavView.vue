@@ -49,7 +49,7 @@
                     <li><router-link to="/logout"><i class="sign out alternate icon"></i> Logout</router-link></li>
                 </ul>
               </div>
-         <div class="bar wow fadeInRight" :class="{added:sidebar}" @click="openSidebar">
+         <div class="bar" :class="{added:sidebar}" @click="openSidebar">
                 <span></span>
                 <span></span>
          </div>
@@ -190,7 +190,7 @@
           &.added{
             position: fixed;
             top:0px;
-            z-index:9;
+            z-index:999;
             left:0px;
             width: 100%;
             animation:fadeInDown 0.3s;
@@ -203,6 +203,7 @@
         grid-template-columns:30% 70%;
         // background: white;
         height: 70px;
+    
      
     }
     .bottom-nav ul li{
@@ -314,6 +315,7 @@
             right: 20px;
             top: 21px;
             display: none;
+            
           &.added{
              & span:nth-child(1){
             width: 30px;
@@ -390,6 +392,7 @@
          }  
          .bar{
              display:block;
+             animation: fadeInRight 0.3s;
          }
          .logged-avata-mobile{
             display: block;

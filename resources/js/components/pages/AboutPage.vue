@@ -2005,14 +2005,16 @@
     </div>
 
 
+    <br>
+    <br>
 
 
     <div class="container">
         <button class="ui button inverted green">See Our Portfolio</button>
     </div>
 
-
-
+    <br>
+    <br>
 
   </div>
 </template>
@@ -2119,13 +2121,15 @@ export default {
 
         & .items{
             background:white;
+            margin-top: 10px;
             box-shadow: 2px 3px 4px #ccc;
             position: relative;
             padding:10px;
 
           &:hover >.social-details{
-              bottom:73px;
+              bottom:81px;
               z-index: 1;
+              opacity: 1;
           }
           &:hover >.details{
              background:rgb(86, 79, 204);
@@ -2138,7 +2142,7 @@ export default {
           & .details{
               background:white;
              text-align: center; 
-             position: relative;
+             position: inherit;
              z-index: 2;
              padding: 5px;
              transition: 0.3s ease;
@@ -2150,9 +2154,11 @@ export default {
           }
 
           & .social-details{
+                opacity: 0;
                 padding:10px;
+                left:0px;
                 position: absolute;
-                width: 94.5%;
+                width:100%;
                 background:rgba(0,0,0,0.7);
                 bottom: 0px;
                 z-index: -1;
