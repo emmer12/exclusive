@@ -118,6 +118,31 @@ export default {
             })  
         },
 
+        uploadFile(context,data){
+            axios.defaults.headers.common['Authorization']='Bearer ' + context.state.token
+            return new Promise((resolve,reject)=>{                
+                let formData=new FormData();
+                
+                formData.append('file',data);
+
+                axios.post('/upload-file',formData,{
+                    onUploadProgress:progressEvent=>{
+                        let progress=Math.round(progressEvent.loaded/progressEvent.total*100)
+                        context.commit("uploadProgress",progress)
+                        
+                    }
+                })
+                .then(response=>{                    // context.commit("retrieveToken",token)
+                    resolve(response)
+                })
+                .catch(err=>{
+                    console.log("fail");
+                    
+                    reject(err)
+                })
+            })
+        },
+
         getSubCategory(context,category){
             context.commit("isLoading",true)
             axios.get('/sub-category/'+category)

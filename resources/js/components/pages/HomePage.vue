@@ -8,6 +8,9 @@
 
         <!-- Services Section -->
 
+
+
+        <custom-video></custom-video>
             
         <!-- What We Do Section -->
             
@@ -19,7 +22,7 @@
 
 
         <br>
-
+        
         <!-- Testimony Section -->
 
         <testimony></testimony>
@@ -44,6 +47,7 @@
    import Wwdo from "../partials/Wwdo"
    import Testimony from "../partials/Testimony"
    import NewsLetter from "../partials/NewsLetter"
+   import CustomVideo from "../partials/CustomVideo"
 
    export default {
        components: {
@@ -54,7 +58,8 @@
            Portfolio,
            Wwdo,
            Testimony,
-           NewsLetter
+           NewsLetter,
+           CustomVideo
            },
         data(){ 
             return {

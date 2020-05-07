@@ -18,6 +18,9 @@
 
                 })
             },
+            uploadProgress(state,data){
+                state.uploadProgress=data
+            },
             loading(state,data){
                 state.loading=data
             },

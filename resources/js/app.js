@@ -16,6 +16,8 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import Slick from 'vue-slick';
 
 
+const DEFAULT_TITLE="::EXCLUSIVE::"
+
 
 Vue.use(VueLazyload, {
     preLoad: 1.3,
@@ -85,6 +87,14 @@ router.beforeEach((to, from, next) => {
     } else {
         next()
     }
+})
+
+
+router.afterEach( (to,from) => {
+ //these hooks do not get a next function and cannot affect the navigation}
+    Vue.nextTick(()=>{
+        document.title=to.meta.title || DEFAULT_TITLE
+    })
 })
 
 /**

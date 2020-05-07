@@ -18,6 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/login','API\LoginController@login');
+Route::get('/allpost','API\BlogController@allPost');
+Route::get('/getpost/{id}','API\BlogController@getPost');
 
 
 Route::group(['middleware'=>'auth:api'], function () {
@@ -25,11 +27,10 @@ Route::group(['middleware'=>'auth:api'], function () {
     Route::get('/dashboard','API\CategoryController@subCategory')->name('subcategory.index');
     Route::post('/newpost','API\BlogController@newPost');
     Route::post('/updatepost','API\BlogController@updatePost');
+    Route::post('/upload-file','API\BlogController@uploadFile');
     Route::delete('/deletePost','API\BlogController@deletePost');
-    Route::get('/allpost','API\BlogController@allPost');
-    Route::get('/getpost/{id}','API\BlogController@getPost');
     
-
+    
     Route::post('/logout','API\LoginController@logout');
 });
 

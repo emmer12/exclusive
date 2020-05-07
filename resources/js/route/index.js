@@ -9,7 +9,9 @@ import GalleryPage from '../components/pages/GalleryPage.vue';
 import NewPost from '../components/partials/NewPost.vue';
 import EditPost from '../components/partials/EditPost.vue';
 import ShowPost from '../components/partials/ShowPost.vue';
+import UploadPage from '../components/partials/UploadPage.vue';
 import AdminLoginPage from '../components/auth/AdminLoginPage.vue';
+import PageNotFound from '../components/pages/PageNotFound.vue';
 import DashboardPage from '../components/auth/DashboardPage.vue';
 import Logout from '../components/auth/Logout.vue';
 
@@ -32,12 +34,18 @@ export const routes = [
     {
         path: '/about',
         name: 'about',
-        component: AboutPage
+        component: AboutPage,
+        meta: {
+            title: "::About::",
+        }
     },
     {
         path: '/contact',
         name: 'contact',
-        component: ContactPage
+        component: ContactPage,
+        meta: {
+            title: "::Contact Us::",
+        }
     },
     {
         path: '/blog',
@@ -48,6 +56,11 @@ export const routes = [
         path: '/blog/:slug',
         name: 'blog-single',
         component: BlogPageSingle
+    },
+    {
+        path: '/upload-example',
+        name: 'uploade',
+        component: UploadPage
     },
     {
         path: '/gallery',
@@ -122,5 +135,11 @@ export const routes = [
         path: '/account/activated/success',
         name: 'activated-success',
         component: AccountActivated
+    },
+
+    {
+        path: '*',
+        name: '404',
+        component: PageNotFound
     },
 ];

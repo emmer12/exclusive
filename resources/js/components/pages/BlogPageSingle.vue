@@ -3,11 +3,11 @@
     <div class="single-con">
       <div
         class="single-blog"
-        :style="{'background':background,'background-size': 'cover','background-position': 'center'}"
+        :style="{'background':newPost.background}"
+        style="background-size: contain,background-position: center"
       >
         <div class="details">
-          <h1>This tiltle of the post</h1>
-
+          <h1>{{newPost.title}}</h1>
           <button>Category</button>
           <span>24th of June</span>
           <br />
@@ -30,10 +30,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6 col-md-offset-3">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae vel labore architecto deleniti blanditiis magnam iusto id provident quas inventore!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae vel labore architecto deleniti blanditiis magnam iusto id provident quas inventore!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae vel labore architecto deleniti blanditiis magnam iusto id provident quas inventore!</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur repudiandae suscipit omnis officiis tenetur ducimus maxime ipsum voluptatum sunt repellendus. Ducimus aliquam ut perferendis, quo dolorum maxime excepturi veritatis at. Voluptatem iusto neque nobis illo sint assumenda, numquam praesentium, consequatur est perspiciatis corrupti a. Perspiciatis in odio consequatur illo doloremque!</p>
+                <div v-html="newPost.description"></div>
             </div>
           </div>
         </div>
@@ -123,11 +120,29 @@ export default {
   },
   data() {
     return {
-      background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),url(/images/slider/big_img1.jpg) no-repeat`
+      newPost:{
+        id:"",
+        title:"",
+        description:"",
+        background: ""
+      }
     };
   },
   methods: {},
-  mounted() {},
+  mounted() {
+   window.scrollTo(0,0)
+  },
+
+  created() {
+     this.$store.dispatch("getById",this.$route.params.slug).then((res)=>{
+                this.newPost.id=res[0].id
+                this.newPost.title=res[0].title
+                this.newPost.description=res[0].description
+                // this.filename=res[0].display
+                this.newPost.background=`linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),url(/storage/uploads/images/${res[0].display}) no-repeat` 
+                
+            }) 
+  },
   computed: {}
 };
 </script>
@@ -149,6 +164,7 @@ export default {
 .single-blog {
   height: 400px;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-position: center;
   text-align: center;
 
   & .details {

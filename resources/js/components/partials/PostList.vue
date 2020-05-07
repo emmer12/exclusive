@@ -34,7 +34,7 @@
                 </thead>
                 <tbody>
 
-                    <tr class="post-list" v-for="(post, index) in posts" :key="post.id">
+                    <tr class="post-list" v-for="post in posts" :key="post.id">
                         <td scope="row"><input type="checkbox" name="selected[]" :value="post.id" v-model="selected"></td>
                         <td>
                             <img :src="`/storage/uploads/images/${post.display}`" alt="">
@@ -237,7 +237,7 @@ export default {
 
   .loading{
        width: 100%;
-       display: flex;
+    //    display: flex;
        & .load-con{
            overflow: hidden;
           background: #ddd;

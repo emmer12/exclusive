@@ -13,5 +13,8 @@ export default {
     },
     loading(state){
         return state.loading
-    } 
+    }, 
+    uploadProgress(state){
+        return state.uploadProgress
+    }
 }

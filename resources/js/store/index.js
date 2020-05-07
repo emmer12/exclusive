@@ -17,7 +17,8 @@ export const store =new Vuex.Store({
       serverError:false,
       posts:null,
       post:null,
-      loading:false
+      loading:false,
+      uploadProgress:0
     },
     mutations,
     actions,

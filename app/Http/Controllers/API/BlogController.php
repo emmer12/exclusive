@@ -130,4 +130,32 @@ class BlogController extends Controller
     return response()->json(['data'=>[$post]], 200);
    }
 
+
+
+
+
+
+
+
+
+   public function uploadFile(Request $request)
+   {
+    if ($request->hasFile('file')) {
+      $fileWiithExt=$request->file('file')->getClientOriginalName();
+
+      $fileName=pathinfo($fileWiithExt,PATHINFO_FILENAME);
+      //get extension only
+      $fileEx=$request->file('file')->getClientOriginalExtension();
+      // file name to store
+      $fileNametoStore=$fileName.'_'.time().'.'.$fileEx;
+      // upload image
+      $path=$request->file('file')->storeAs("public/uploads/images",$fileNametoStore);
+      }
+    
+
+
+       return response()->json(['filename'=>$fileNametoStore],200);
+       
+   }
+
 }

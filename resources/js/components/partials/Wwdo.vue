@@ -6,6 +6,15 @@
             <div class="row">
 
 
+                <div class="col-md-4" v-for="i in 3" :key="i" v-show="loading">
+                    <div class="load-con">
+                    <div class="img-area loads">
+                    
+                    </div>
+                    <div class="details loads">
+                    </div>
+                </div>
+                </div>
 
 
 
@@ -13,10 +22,11 @@
                 <div class="col-md-4">
                     <div class="classic-card">
                        <div>
-                           <img v-lazy="'/images/works/w2.jpg'" alt="" width="100%" height="240px">
+                           <video-player class="video-player-box"
+                             ref="videoPlayer" :options="options" src="" width="100%" ></video-player>
                        </div>
                        <div class="details">   
-                           <h4>Wedding Photography</h4>
+                             <i class="play icon"></i>
                         </div>
                     </div>
                 </div>
@@ -53,8 +63,30 @@
 </template>
 
 <script>
-export default {
+import 'video.js/dist/video-js.css'
 
+import { videoPlayer } from 'vue-video-player'
+
+export default {
+ components: {
+    videoPlayer
+  },
+  data() {
+      return {
+          loading:false,
+          options:{
+                    sources: [{
+                    type: "video/mp4",
+                    src: "/videos/demo2.mp4"
+                }],
+                poster: "/images/works/w3.jpg",
+          }
+      }
+  },
+
+  mounted() {
+      console.log(videoPlayer);
+  },
 }
 </script>
 
@@ -69,7 +101,7 @@ export default {
 .classic-card{
     height: 260px;
     overflow: hidden;
-    padding:10px;
+    // padding:10px;
     background: white;
     border-radius: 5px;
     border:1px solid #ccc;
